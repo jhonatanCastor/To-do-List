@@ -18,6 +18,10 @@ const Home: React.FC = () => {
     setAll(all.map(todo => todo.id === id ? { ...todo, done: true } : todo));
   }
 
+  const removeTodo = (id: string) => {
+    setAll(all.filter(todo => todo.id !== id));
+  }
+
   return (
     <>
       <header className="bg-slate-950 p-2 mx-64">
@@ -41,18 +45,25 @@ const Home: React.FC = () => {
             className="bg-green-900 border-2 p-2 rounded"
             onClick={() => addAll()}>Add</button>
         </div>
-        <ul className="mt-5">
-          {
-            all.map(todo => (
-              <li
-                onClick={() => makeAllDone(todo.id)}
-                className={`bg-slate-800 p-2 my-2 text-3xl rounded ml-5 cursor-pointer ${todo.done ? 'line-through' : 'no-underline'}`}
-
-              >
+        <ul className="mt-5 w-full max-w-md">
+          {all.map((todo) => (
+            <li
+              key={todo.id}
+              className={`bg-white p-4 my-2 rounded border border-gray-300 flex items-center justify-between ${todo.done ? 'line-through text-gray-500' : 'text-gray-700'
+                }`}
+            >
+              <span onClick={() => makeAllDone(todo.id)} className="cursor-pointer">
                 {todo.value}
-              </li>
-            ))
-          }
+              </span>
+
+              <button
+                className="text-red-500"
+                onClick={() => removeTodo(todo.id)}
+              >
+                🗑️
+              </button>
+            </li>
+          ))}
         </ul>
       </main>
     </>
