@@ -45,14 +45,14 @@ const Home: React.FC = () => {
               <input
                 type="text"
                 placeholder="Enter a new todo"
-                className="flex p-2 rounded mr-5 text-slate-900 border-2"
+                className="flex p-2 rounded mr-5 text-slate-900 border-2 w-96 h-12"
                 onChange={(e) => {
                   setTodo(e.target.value);
                 }}
                 value={todo}
               />
               <button
-                className="bg-green-900 border-2 p-2 rounded text-white"
+                className="bg-green-900 border-2 p-2 rounded w-24 font-bold text-white"
                 onClick={() => addAll()}
               >
                 Add
